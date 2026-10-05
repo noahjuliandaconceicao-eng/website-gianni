@@ -1,0 +1,509 @@
+/* ──────────────────────────────────────────────
+   Top fixed header bar
+   ────────────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.4s ease;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.homeLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.homeLinkImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  transition: border-color 0.3s;
+
+  .homeLink:hover & {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.homeLinkText {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLink {
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.3s;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover {
+    color: #fff;
+
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}
+
+.navLinkActive {
+  color: #fff;
+
+  &::after {
+    transform: scaleX(1);
+    transform-origin: left;
+    background: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.menuBtn {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: background 0.3s, border-color 0.3s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.menuDot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   Full-screen menu overlay
+   ────────────────────────────────────────────── */
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.menuOpen {
+  pointer-events: auto;
+}
+
+.menuBg {
+  position: absolute;
+  inset: 0;
+  background: #0e0e0e;
+  transform-origin: top center;
+  transform: scaleY(0);
+  will-change: transform;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color 0.3s;
+  z-index: 10;
+  opacity: 0;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.menuContent {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px 40px;
+}
+
+.menuNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 700px;
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: color 0.35s, padding-left 0.35s;
+  opacity: 0;
+  will-change: transform, opacity;
+
+  &:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  &:hover {
+    color: #fff;
+    padding-left: 8px;
+
+    .menuLinkArrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  &.active {
+    color: #fff;
+
+    .menuLinkIndex {
+      color: rgba(255, 255, 255, 0.6);
+    }
+  }
+}
+
+.menuLinkIndex {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.2);
+  min-width: 28px;
+  transition: color 0.35s;
+}
+
+.menuLinkLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  line-height: 1;
+  flex: 1;
+}
+
+.menuLinkArrow {
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.35s, transform 0.35s;
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Footer inside menu */
+.menuFooter {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 40px;
+  opacity: 0;
+}
+
+.menuFooterLeft,
+.menuFooterRight {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menuFooterLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.menuFooterLinks {
+  display: flex;
+  gap: 24px;
+
+  a {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #fff;
+
+      .linkLine {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
+.linkLine {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.menuFooterDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: right;
+}
+
+.menuFooterCredit {
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.18);
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* ──────────────────────────────────────────────
+   Responsive
+   ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .navLinks {
+    gap: 22px;
+  }
+  
+  .navLink {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 18px;
+    height: 54px;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+
+  .homeLinkImg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .homeLinkText {
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+
+  .menuContent {
+    padding: 72px 24px 28px;
+  }
+
+  .menuLinkLabel {
+    font-size: clamp(28px, 8vw, 44px);
+  }
+
+  .menuLink {
+    padding: 14px 0;
+    gap: 14px;
+  }
+
+  .menuFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding-top: 32px;
+  }
+
+  .menuFooterRight {
+    align-items: flex-start;
+  }
+
+  .menuFooterDesc {
+    text-align: left;
+  }
+
+  .menuFooterCredit {
+    text-align: left;
+  }
+
+  .menuFooterLinks {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .closeBtn {
+    top: 18px;
+    right: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0 14px;
+    height: 50px;
+  }
+
+  .homeLink {
+    gap: 8px;
+  }
+
+  .homeLinkImg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .homeLinkText {
+    font-size: 11px;
+  }
+
+  .menuBtn {
+    font-size: 10px;
+    padding: 6px 12px;
+    letter-spacing: 1.5px;
+  }
+
+  .menuContent {
+    padding: 64px 18px 24px;
+  }
+
+  .menuLinkLabel {
+    font-size: clamp(24px, 7.5vw, 36px);
+  }
+
+  .menuLink {
+    padding: 12px 0;
+    gap: 12px;
+  }
+
+  .menuLinkIndex {
+    font-size: 10px;
+    min-width: 24px;
+  }
+
+  .menuFooter {
+    gap: 20px;
+    padding-top: 24px;
+  }
+
+  .menuFooterLinks {
+    gap: 10px;
+
+    a {
+      font-size: 11px;
+    }
+  }
+
+  .menuFooterDesc {
+    font-size: 10px;
+  }
+}

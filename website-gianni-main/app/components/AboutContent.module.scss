@@ -1,0 +1,295 @@
+.aboutPage {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #fff;
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px;
+}
+
+.heroTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  span {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 8.5vw, 140px);
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    line-height: 0.95;
+    color: #fff;
+  }
+}
+
+/* Gallery strip – horizontal scrolling images like FXM about page */
+.galleryStrip {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 40px 60px;
+
+  /* Hide scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.galleryTrack {
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.galleryImg {
+  flex-shrink: 0;
+  width: 240px;
+  height: 320px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}
+
+/* Sections */
+.section {
+  padding: 60px 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sectionTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 40px;
+}
+
+/* About Me layout */
+.aboutMeGrid {
+  display: flex;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.aboutPortrait {
+  flex-shrink: 0;
+  width: 260px;
+
+  img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.aboutPortraitCaption {
+  display: block;
+  margin-top: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* About text */
+.aboutText {
+  max-width: 700px;
+
+  p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+}
+
+/* Experiences */
+.experienceList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.experienceItem {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 30px;
+  align-items: baseline;
+}
+
+.expRole {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.expCompany {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.expDate {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Clients */
+.clientsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  span {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* Footer */
+.footer {
+  padding: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footerNav {
+  display: flex;
+  gap: 24px;
+
+  a, span {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.footerActive {
+  color: #fff !important;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 24px;
+
+  a {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+    padding: 0 20px;
+  }
+
+  .heroTitle span {
+    font-size: clamp(28px, 10vw, 60px);
+  }
+
+  .galleryStrip {
+    padding: 0 20px 40px;
+  }
+
+  .galleryImg {
+    width: 160px;
+    height: 213px;
+  }
+
+  .section {
+    padding: 40px 20px;
+  }
+
+  .aboutMeGrid {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .aboutPortrait {
+    width: 200px;
+
+    img {
+      height: 260px;
+    }
+  }
+
+  .footer {
+    padding: 30px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experienceItem {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
